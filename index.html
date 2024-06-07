@@ -162,7 +162,7 @@
 
     <script>
  
-
+//Function To Send Attributes to Amelia From Parent Frame
  function sendConversationAttribute(key, value) {
 	let data = {};
 	data["actionType"] = "ameliaConversationAttributes";
@@ -182,19 +182,19 @@
 		) {
 		  console.log("Inside if ");
 		  isAppStarted = true;
-          sendConversationAttribute("Test","Home Page")
+          sendConversationAttribute("Logged In User","True") // Attributes to Send to Amelia from HomePage. 
 		}
 	     });
 
 	 function sendMessage(jsonData) {
-
+            var ameliaBaseURL = "https://adviacu.dev.amelia.com"  //define Amelia Base URL
 	        console.log("Inside send message new ");
 	        if (isAppStarted) {
 	          const iframe = document.getElementById("receiver");
 	          console.log("Inside if send message ");
 	          iframe?.contentWindow?.postMessage(
 	            jsonData,
-	            "https://adviacu.dev.amelia.com"
+	            ameliaBaseURL 
 	          );
 	        }
 	      }
