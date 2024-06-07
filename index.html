@@ -161,6 +161,8 @@
 
 
     <script>
+receiverElemContentWindow.postMessage({actionType: 'ameliaConversationAttributes', actionData: {test: 'Home Page'}}, 'https://adviacu.dev.amelia.com/Amelia/ui/advia_external/chat?domain=adviacu_customerfacing_dev');
+
         function openChatOverlay(receiverElem, imgElemOpen, imgElemClose) {
             document.getElementById('receiver').classList.add("open");
             document.getElementById('receiver').classList.remove("close");
