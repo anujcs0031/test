@@ -162,7 +162,8 @@
 
     <script>
         var receiverElemContentWindow = document.getElementById('receiver').contentWindow;
-        receiverElemContentWindow.postMessage({actionType: 'ameliaConversationAttributes', actionData: {test: 'Home Page'}}, 'https://adviacu.dev.amelia.com/Amelia/ui/advia_external/');
+        receiverElemContentWindow.postMessage({actionType: 'ameliaConversationAttributes', actionData: {test: 'Home Page'}}, 'https://adviacu.dev.amelia.com/Amelia/ui/advia_external/chat?domain=adviacu_customerfacing_dev');
+        receiverElemContentWindow.postMessage({actionType: 'ameliaSay', actionData: 'aloha'}, 'https://adviacu.dev.amelia.com/Amelia/ui/advia_external/chat?domain=adviacu_customerfacing_dev');
 
         function openChatOverlay(receiverElem, imgElemOpen, imgElemClose) {
             document.getElementById('receiver').classList.add("open");
