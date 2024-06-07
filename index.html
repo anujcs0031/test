@@ -159,12 +159,46 @@
         </div>
     </div>
 
-
+sendConversationAttribute("Test","Home Page")
     <script>
-        var receiverElemContentWindow = document.getElementById('receiver').contentWindow;
-        receiverElemContentWindow.postMessage({actionType: 'ameliaConversationAttributes', actionData: {test: 'Home Page'}}, 'https://adviacu.dev.amelia.com/Amelia/ui/advia_external/chat?domain=adviacu_customerfacing_dev');
-        receiverElemContentWindow.postMessage({actionType: 'ameliaSay', actionData: 'aloha'}, 'https://adviacu.dev.amelia.com/Amelia/ui/advia_external/chat?domain=adviacu_customerfacing_dev');
+ 
 
+ function sendConversationAttribute(key, value) {
+	let data = {};
+	data["actionType"] = "ameliaConversationAttributes";
+	let entry = {};
+	entry[key] = value;
+	data["actionData"] = entry;
+	console.log("Send data: " + JSON.stringify(data));
+	sendMessage(data);
+	}
+
+	var isAppStarted = false;
+	     window.addEventListener("message", (res) => {
+		console.log("Inside listner " + res);
+		if (
+		  res?.data?.notificationType === "conversationNew" ||
+		  res?.data?.notificationType === "conversationJoined"
+		) {
+		  console.log("Inside if ");
+		  isAppStarted = true;
+		}
+	     });
+
+	 function sendMessage(jsonData) {
+
+	        console.log("Inside send message new ");
+	        if (isAppStarted) {
+	          const iframe = document.getElementById("receiver");
+	          console.log("Inside if send message ");
+	          iframe?.contentWindow?.postMessage(
+	            jsonData,
+	            ameliaBaseUrl
+	          );
+	        }
+	      }
+
+window.addEventListener('message', receiveMessage);
         function openChatOverlay(receiverElem, imgElemOpen, imgElemClose) {
             document.getElementById('receiver').classList.add("open");
             document.getElementById('receiver').classList.remove("close");
