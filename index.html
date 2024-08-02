@@ -18,7 +18,22 @@
             right: 24px;
             z-index: 90;
         }
-        
+
+        .chat-overlay-header {
+            position: relative;
+            height: 30px;
+            width: 100%; /* Ensure it covers the entire width of the chat overlay */
+            background-color: #4d5aff; /* Blue background color */
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 0.5);
+        }
+        .chat-overlay-header img {
+            height: 10px; /* Adjust the size of the icons as needed */
+            margin: 0 10px;
+            cursor: pointer;
+        }
         .chat-overlay-open {
             height: 512px;
         }
@@ -144,6 +159,9 @@
 
 <body>
     <div class="chat-overlay">
+        <div class="chat-overlay-header">
+            <img src="close.png" alt="Minimize" onclick="toggleChatOverlay()" /> <!-- Add your minimize icon here -->
+        </div>
         <div class="chat-overlay-wrapper">
             <div class="chat-overlay-header-mobile">
                 <img class="close" src="./vsp_logo.png" alt="toggle chat overlay" />
