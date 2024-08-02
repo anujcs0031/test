@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
 
 <head>
-   <link rel="icon" type="image/png" href="vsp_vision.jpeg"> <title>VSP Vision Care</title>
+    <link rel="icon" type="image/png" href="vsp_vision.jpeg">
+    <title>VSP Vision Care</title>
     <style>
         body {
             background-image: url(vsp_vision.jpeg);
             background-size: cover;
-            /* <------ */
         }
-        
+
         .chat-overlay {
             position: fixed;
             width: 376px;
@@ -17,54 +17,63 @@
             bottom: 24px;
             right: 24px;
             z-index: 90;
+            border-radius: 8px; /* Optional: Add rounded corners */
+            overflow: hidden; /* Ensures the header and content fit within the chat overlay */
         }
-        
+
         .chat-overlay-open {
             height: 512px;
         }
-        
+
         .chat-overlay-closed {
             height: 78px;
         }
-        
+
         .chat-overlay-wrapper {
             width: 376px;
             height: 448px;
         }
-        
+
         .chat-overlay-header-mobile {
             display: none;
         }
-        
+
         .chat-overlay-header {
             position: relative;
             height: 56px;
-            width: 56px;
-            margin-left: auto;
-            border-radius: 50%;
+            width: 100%; /* Ensure it covers the entire width of the chat overlay */
+            background-color: #4d5aff; /* Blue background color */
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
             box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 0.5);
         }
-        
+
+        .chat-overlay-header img {
+            height: 20px; /* Adjust the size of the icons as needed */
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
         #receiver {
             transition: opacity 1s ease-in-out;
             opacity: 1;
             background: rgba(0, 0, 0, 0.5);
             box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 0.5);
-            /* border-radius: 0.5rem; */
         }
-        
+
         #receiver.close {
             height: 0;
             opacity: 0;
             overflow: hidden;
         }
-        
+
         #receiver.open {
             height: 100%;
             opacity: 1;
             overflow: hidden;
         }
-        
+
         .chat-overlay-header-img {
             position: absolute;
             max-width: 56px;
@@ -77,58 +86,67 @@
             bottom: 0px;
             margin: auto;
         }
-        
+
         .chat-overlay-header-img.open {
             opacity: 0;
         }
-        
+
         .absolute-cart-box {
             display: none;
         }
-        
+
         @media only screen and (max-width: 768px) {
             .chat-overlay {
                 width: 100%;
                 position: fixed;
                 height: 100%;
             }
+
             .chat-overlay-header-mobile {
                 display: flex;
                 width: inherit;
                 height: 9%;
                 background: #4d5aff;
             }
+
             .chat-overlay-header-mobile img {
                 height: 30%;
                 padding: 1rem;
                 margin-left: auto;
             }
+
             .chat-overlay-header-mobile.close {
                 display: none;
             }
+
             #receiver {
                 border-radius: 0;
             }
+
             #receiver.close {
                 height: 0;
                 opacity: 0;
                 overflow: hidden;
             }
+
             #receiver.open {
                 height: 91%;
                 opacity: 1;
                 overflow: hidden;
             }
+
             .chat-overlay-open {
                 height: 100%;
                 bottom: 0px;
                 right: 0px;
             }
+
             .chat-overlay-closed {
                 height: 70px;
                 bottom: 24px;
                 right: 24px;
             }
+
             .chat-overlay-wrapper {
                 width: 100%;
                 height: 100%;
@@ -136,6 +154,7 @@
         }
     </style>
 </head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -144,20 +163,25 @@
 
 <body>
     <div class="chat-overlay">
+        <div class="chat-overlay-header">
+            <img src="close.png" alt="Minimize" onclick="toggleChatOverlay()" /> <!-- Add your minimize icon here -->
+            <img src="close.png"Close" onclick="closeChatOverlayManually()" /> <!-- Add your close icon here -->
+        </div>
         <div class="chat-overlay-wrapper">
             <div class="chat-overlay-header-mobile">
                 <img class="close" src="./vsp_logo.png" alt="toggle chat overlay" />
             </div>
-            <iframe id="receiver" src="https://vsp.dev.amelia.com/Amelia/ui/vsp_vision/chat?domain=vspdev" frameborder="0" width="100%" height="100%" allow="geolocation; microphone; camera">
-        <p>Your browser does not support iframes.</p>
-      </iframe>
+            <iframe id="receiver"
+                src="https://vsp.dev.amelia.com/Amelia/ui/vsp_vision/chat?domain=vspdev" frameborder="0" width="100%"
+                height="100%" allow="geolocation; microphone; camera">
+                <p>Your browser does not support iframes.</p>
+            </iframe>
             <div class="chat-overlay-header">
                 <img class="chat-overlay-header-img close" src="./vsp_logo.png" alt="toggle chat overlay" />
                 <img class="chat-overlay-header-img open" src="./vsp_logo.png" alt="toggle chat overlay" />
             </div>
         </div>
     </div>
-
 
     <script>
         function openChatOverlay(receiverElem, imgElemOpen, imgElemClose) {
@@ -183,10 +207,6 @@
         }
 
         function toggleChatOverlay() {
-            /**
-             * Toggles opening and closing of the chatOverlay
-             * @returns - no return
-             */
             var chatOverlayHeaderImgElemOpen = document.getElementsByClassName('chat-overlay-header-img open')[0];
             var chatOverlayHeaderImgElemClose = document.getElementsByClassName('chat-overlay-header-img close')[0];
             var receiverElem = document.getElementById('receiver');
@@ -197,11 +217,17 @@
             }
         }
 
+        function closeChatOverlayManually() {
+            var chatOverlayHeaderImgElemOpen = document.getElementsByClassName('chat-overlay-header-img open')[0];
+            var chatOverlayHeaderImgElemClose = document.getElementsByClassName('chat-overlay-header-img close')[0];
+            var receiverElem = document.getElementById('receiver');
+            closeChatOverlay(receiverElem, chatOverlayHeaderImgElemOpen, chatOverlayHeaderImgElemClose);
+        }
+
         var chatOverlayHeaderElem = document.getElementsByClassName('chat-overlay-header')[0];
         chatOverlayHeaderElem.addEventListener('click', toggleChatOverlay);
         var chatOverlayHeaderElemMobile = document.getElementsByClassName('chat-overlay-header-mobile')[0];
         chatOverlayHeaderElemMobile.addEventListener('click', toggleChatOverlay);
-
 
         if (typeof(Storage) !== "undefined") {
             var chatOverlayOpen = localStorage.getItem('chatOverlayOpen');
@@ -214,7 +240,6 @@
                 openChatOverlay(receiverElem, chatOverlayHeaderImgElemOpen, chatOverlayHeaderImgElemClose);
             }
         } else {
-            // Sorry! No Web Storage support..
             console.log('No localStorage support')
         }
     </script>
