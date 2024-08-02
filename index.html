@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
 
 <head>
-    <title>VSP</title>
+   <link rel="icon" type="image/png" href="vsp_vision.jpeg"> <title>Advia Credit Union | Your Trusted Partner For Financial Success</title>
     <style>
         body {
-            background-image: url(vsp_vision.jpeg);
+            background-image: url(advia-home-page.png);
             background-size: cover;
             /* <------ */
         }
@@ -143,11 +143,10 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
 <body>
-   
     <div class="chat-overlay">
         <div class="chat-overlay-wrapper">
             <div class="chat-overlay-header-mobile">
-                <img class="close" src="./min.png" alt="toggle chat overlay" />
+                <img class="close" src="./amelia-close.png" alt="toggle chat overlay" />
             </div>
             <iframe id="receiver" src="https://vsp.dev.amelia.com/Amelia/ui/vsp_vision/chat?domain=vspdev" frameborder="0" width="100%" height="100%" allow="geolocation; microphone; camera">
         <p>Your browser does not support iframes.</p>
@@ -159,46 +158,8 @@
         </div>
     </div>
 
+
     <script>
- 
-//Function To Send Attributes to Amelia From Parent Frame
- function sendConversationAttribute(key, value) {
-	let data = {};
-	data["actionType"] = "ameliaConversationAttributes";
-	let entry = {};
-	entry[key] = value;
-	data["actionData"] = entry;
-	console.log("Send data: " + JSON.stringify(data));
-	sendMessage(data);
-	}
-
-	var isAppStarted = false;
-	     window.addEventListener("message", (res) => {
-		console.log("Inside listner " + res);
-		if (
-		  res?.data?.notificationType === "conversationNew" ||
-		  res?.data?.notificationType === "conversationJoined"
-		) {
-		  console.log("Inside if ");
-		  isAppStarted = true;
-          sendConversationAttribute("Logged In User","True") // Attributes to Send to Amelia from HomePage. 
-		}
-	     });
-
-	 function sendMessage(jsonData) {
-            var ameliaBaseURL = "https://adviacu.dev.amelia.com"  //define Amelia Base URL
-	        console.log("Inside send message new ");
-	        if (isAppStarted) {
-	          const iframe = document.getElementById("receiver");
-	          console.log("Inside if send message ");
-	          iframe?.contentWindow?.postMessage(
-	            jsonData,
-	            ameliaBaseURL 
-	          );
-	        }
-	      }
-
-window.addEventListener('message', receiveMessage);
         function openChatOverlay(receiverElem, imgElemOpen, imgElemClose) {
             document.getElementById('receiver').classList.add("open");
             document.getElementById('receiver').classList.remove("close");
@@ -220,6 +181,46 @@ window.addEventListener('message', receiveMessage);
             imgElemClose.style.opacity = 0;
             localStorage.setItem('chatOverlayOpen', false);
         }
+
+
+
+       function sendConversationAttribute(key, value) {
+	let data = {};
+	data["actionType"] = "ameliaConversationAttributes";
+	let entry = {};
+	entry[key] = value;
+	data["actionData"] = entry;
+	console.log("Send data: " + JSON.stringify(data));
+	sendMessage(data);
+	}
+		  
+		  
+	var isAppStarted = false;
+	     window.addEventListener("message", (res) => {
+		console.log("Inside listner " + res);
+		if (
+		  res?.data?.notificationType === "conversationNew" ||
+		  res?.data?.notificationType === "conversationJoined"
+		) {
+		  console.log("Inside if ");
+		  isAppStarted = true;
+		}
+	     });
+		  
+		  
+	 function sendMessage(jsonData) {
+	        
+	
+	        console.log("Inside send message new ");
+	        if (isAppStarted) {
+	          const iframe = document.getElementById("receiver");
+	          console.log("Inside if send message ");
+	          iframe?.contentWindow?.postMessage(
+	            jsonData,
+	            ameliaBaseUrl
+	          );
+	        }
+	      }
 
         function toggleChatOverlay() {
             /**
