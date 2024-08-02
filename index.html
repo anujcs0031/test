@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
 
 <head>
-    <link rel="icon" type="image/png" href="vsp_vision.jpeg">
-    <title>Advia Credit Union | Your Trusted Partner For Financial Success</title>
+   <link rel="icon" type="image/png" href="vsp_vision.jpeg"> <title>VSP Vision Care</title>
     <style>
         body {
-            background-image: url(advia-home-page.png);
+            background-image: url(vsp_vision.jpeg);
             background-size: cover;
+            /* <------ */
         }
-
+        
         .chat-overlay {
             position: fixed;
             width: 376px;
@@ -18,85 +18,53 @@
             right: 24px;
             z-index: 90;
         }
-
+        
         .chat-overlay-open {
             height: 512px;
         }
-
-        .chat-overlay-wrapper {
-            width: 100%;
-            height: 100%;
-        }
-
+        
         .chat-overlay-closed {
             height: 78px;
         }
-
+        
         .chat-overlay-wrapper {
             width: 376px;
             height: 448px;
         }
-
+        
         .chat-overlay-header-mobile {
             display: none;
         }
-
+        
         .chat-overlay-header {
-            display: flex;
-            width: inherit;
-            height: 9%;
-            background: #5F2167;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 10px;
-        }
-
-        .chat-overlay-header img {
-            height: 50%;
-            padding: 10px 10px 0 0;
+            position: relative;
+            height: 56px;
+            width: 56px;
             margin-left: auto;
+            border-radius: 50%;
+            box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 0.5);
         }
-
-        .chat-overlay-header svg {
-            fill: #fff;
-            height: 25px;
-            width: 25px;
-            cursor: pointer;
-        }
-
-        .chat-overlay-header svg.chat-bot-close {
-            margin: 0px 13px;
-        }
-
-        .chat-overlay-header svg.chat-bot-minimize {
-            margin-top: -17px;
-        }
-
-        .chat-overlay-header.close {
-            visibility: hidden;
-            pointer-events: none;
-            opacity: 0;
-        }
-
+        
         #receiver {
             transition: opacity 1s ease-in-out;
             opacity: 1;
             background: rgba(0, 0, 0, 0.5);
             box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 0.5);
+            /* border-radius: 0.5rem; */
         }
-
+        
         #receiver.close {
             height: 0;
             opacity: 0;
             overflow: hidden;
         }
-
+        
         #receiver.open {
             height: 100%;
             opacity: 1;
             overflow: hidden;
         }
-
+        
         .chat-overlay-header-img {
             position: absolute;
             max-width: 56px;
@@ -109,94 +77,62 @@
             bottom: 0px;
             margin: auto;
         }
-
+        
         .chat-overlay-header-img.open {
             opacity: 0;
         }
-
+        
         .absolute-cart-box {
             display: none;
         }
-
+        
         @media only screen and (max-width: 768px) {
             .chat-overlay {
                 width: 100%;
                 position: fixed;
                 height: 100%;
             }
-
             .chat-overlay-header-mobile {
                 display: flex;
                 width: inherit;
                 height: 9%;
                 background: #4d5aff;
             }
-
             .chat-overlay-header-mobile img {
                 height: 30%;
                 padding: 1rem;
                 margin-left: auto;
             }
-
             .chat-overlay-header-mobile.close {
                 display: none;
             }
-
             #receiver {
                 border-radius: 0;
             }
-
             #receiver.close {
                 height: 0;
                 opacity: 0;
                 overflow: hidden;
             }
-
             #receiver.open {
                 height: 91%;
                 opacity: 1;
                 overflow: hidden;
             }
-
             .chat-overlay-open {
                 height: 100%;
                 bottom: 0px;
                 right: 0px;
             }
-
             .chat-overlay-closed {
                 height: 70px;
                 bottom: 24px;
                 right: 24px;
             }
-
             .chat-overlay-wrapper {
                 width: 100%;
                 height: 100%;
             }
-
-            @media (min-width: 800px) {
-                .chat-overlay-open {
-                    height: 550px !important;
-                }
-
-                .chat-overlay-wrapper {
-                    width: 400px;
-                    height: 550px !important;
-                }
-            }
-        }
-
-        .bot-icon {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 56px;
-            height: 56px;
-            background: url('bot-icon.png') no-repeat center center;
-            background-size: contain;
-            cursor: pointer;
-            z-index: 100;
         }
     </style>
 </head>
@@ -207,26 +143,21 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
 <body>
-
-    <div class="chat-overlay chat-overlay-closed">
+    <div class="chat-overlay">
         <div class="chat-overlay-wrapper">
-            <div class="chat-overlay-header">
-                <svg class="chat-bot-minimize" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <path d="M32 416c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H32z" />
-                </svg>
-                <svg class="chat-bot-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
-                </svg>
+            <div class="chat-overlay-header-mobile">
+                <img class="close" src="./vsp_logo.png" alt="toggle chat overlay" />
             </div>
-            <iframe class="close" id="receiver" scrolling="auto"
-                src="https://vsp.dev.amelia.com/Amelia/ui/vsp_vision/chat?domain=vspdev" frameborder="0" width="100%"
-                height="100%" allow="geolocation; microphone; camera">
-                <p>Your browser does not support iframes.</p>
-            </iframe>
+            <iframe id="receiver" src="https://vsp.dev.amelia.com/Amelia/ui/vsp_vision/chat?domain=vspdev" frameborder="0" width="100%" height="100%" allow="geolocation; microphone; camera">
+        <p>Your browser does not support iframes.</p>
+      </iframe>
+            <div class="chat-overlay-header">
+                <img class="chat-overlay-header-img close" src="./vsp_logo.png" alt="toggle chat overlay" />
+                <img class="chat-overlay-header-img open" src="./vsp_logo.png" alt="toggle chat overlay" />
+            </div>
         </div>
     </div>
 
-    <div class="bot-icon" onclick="toggleChatOverlay()"></div>
 
     <script>
         function openChatOverlay(receiverElem, imgElemOpen, imgElemClose) {
@@ -251,77 +182,43 @@
             localStorage.setItem('chatOverlayOpen', false);
         }
 
-        function sendConversationAttribute(key, value) {
-            let data = {};
-            data["actionType"] = "ameliaConversationAttributes";
-            let entry = {};
-            entry[key] = value;
-            data["actionData"] = entry;
-            console.log("Send data: " + JSON.stringify(data));
-            sendMessage(data);
-        }
-
-        var isAppStarted = false;
-        window.addEventListener('message', function (event) {
-            let data = event.data;
-            if (data["actionType"] == "virtualAgentChatStarted" && !isAppStarted) {
-                let attributes = localStorage.getItem("CONVERSATION_ATTRIBUTES");
-                let attributeObj = JSON.parse(attributes);
-                if (attributeObj) {
-                    let conversationAttributes = {};
-                    for (let k in attributeObj) {
-                        sendConversationAttribute(k, attributeObj[k]);
-                    }
-                }
-                isAppStarted = true;
-            }
-        });
-
-        var isMinimized = false;
-        function toggleMinimizeChat() {
-            var receiverElem = document.getElementById('receiver');
-            if (!isMinimized) {
-                receiverElem.style.height = '78px';
-                isMinimized = true;
-            } else {
-                receiverElem.style.height = '100%';
-                isMinimized = false;
-            }
-        }
-
         function toggleChatOverlay() {
-            const receiverElem = document.getElementById('receiver');
-            const imgElemOpen = document.querySelector('.chat-overlay-header-img.open');
-            const imgElemClose = document.querySelector('.chat-overlay-header-img:not(.open)');
-            if (receiverElem.classList.contains('open')) {
-                closeChatOverlay(receiverElem, imgElemOpen, imgElemClose);
+            /**
+             * Toggles opening and closing of the chatOverlay
+             * @returns - no return
+             */
+            var chatOverlayHeaderImgElemOpen = document.getElementsByClassName('chat-overlay-header-img open')[0];
+            var chatOverlayHeaderImgElemClose = document.getElementsByClassName('chat-overlay-header-img close')[0];
+            var receiverElem = document.getElementById('receiver');
+            if (receiverElem.classList.contains('close')) {
+                openChatOverlay(receiverElem, chatOverlayHeaderImgElemOpen, chatOverlayHeaderImgElemClose);
             } else {
-                openChatOverlay(receiverElem, imgElemOpen, imgElemClose);
+                closeChatOverlay(receiverElem, chatOverlayHeaderImgElemOpen, chatOverlayHeaderImgElemClose);
             }
         }
 
-        document.querySelector('.chat-bot-close').addEventListener('click', function () {
-            const receiverElem = document.getElementById('receiver');
-            const imgElemOpen = document.querySelector('.chat-overlay-header-img.open');
-            const imgElemClose = document.querySelector('.chat-overlay-header-img:not(.open)');
-            closeChatOverlay(receiverElem, imgElemOpen, imgElemClose);
-        });
+        var chatOverlayHeaderElem = document.getElementsByClassName('chat-overlay-header')[0];
+        chatOverlayHeaderElem.addEventListener('click', toggleChatOverlay);
+        var chatOverlayHeaderElemMobile = document.getElementsByClassName('chat-overlay-header-mobile')[0];
+        chatOverlayHeaderElemMobile.addEventListener('click', toggleChatOverlay);
 
-        document.querySelector('.chat-bot-minimize').addEventListener('click', function () {
-            toggleMinimizeChat();
-        });
 
-        window.onload = function () {
-            const receiverElem = document.getElementById('receiver');
-            const imgElemOpen = document.querySelector('.chat-overlay-header-img.open');
-            const imgElemClose = document.querySelector('.chat-overlay-header-img:not(.open)');
-            if (localStorage.getItem('chatOverlayOpen') === 'true') {
-                openChatOverlay(receiverElem, imgElemOpen, imgElemClose);
+        if (typeof(Storage) !== "undefined") {
+            var chatOverlayOpen = localStorage.getItem('chatOverlayOpen');
+            var chatOverlayHeaderImgElemOpen = document.getElementsByClassName('chat-overlay-header-img open')[0];
+            var chatOverlayHeaderImgElemClose = document.getElementsByClassName('chat-overlay-header-img close')[0];
+            var receiverElem = document.getElementById('receiver');
+            if (chatOverlayOpen && localStorage.getItem('chatOverlayOpen') !== "true") {
+                closeChatOverlay(receiverElem, chatOverlayHeaderImgElemOpen, chatOverlayHeaderImgElemClose);
             } else {
-                closeChatOverlay(receiverElem, imgElemOpen, imgElemClose);
+                openChatOverlay(receiverElem, chatOverlayHeaderImgElemOpen, chatOverlayHeaderImgElemClose);
             }
+        } else {
+            // Sorry! No Web Storage support..
+            console.log('No localStorage support')
         }
     </script>
+
 </body>
 
 </html>
