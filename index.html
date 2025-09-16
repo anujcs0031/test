@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
 <head>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/6P07b0r/default-favicon.png"> 
     <title>Redstone Federal Credit Union</title>
     <style>
         body {
@@ -21,17 +22,15 @@
             border-radius: 0.5rem;
             overflow: hidden;
             background: white;
-            display: none; /* Initially hide the chat overlay */
+            /* No display: none; here, let the JS handle it */
         }
 
         .chat-overlay-open {
             height: 500px;
-            display: block;
         }
 
         .chat-overlay-closed {
             height: 56px;
-            display: block;
         }
         
         .chat-overlay-wrapper {
@@ -39,7 +38,6 @@
             height: 100%;
         }
 
-        /* New header styles */
         .chat-header {
             display: flex;
             justify-content: space-between;
@@ -57,7 +55,6 @@
             align-items: center;
         }
 
-        /* Modified to a red circle with 'RED' text */
         .chat-logo {
             width: 24px;
             height: 24px;
@@ -72,7 +69,6 @@
             font-size: 10px;
         }
 
-        /* Modified to 'RED' */
         .chat-title {
             font-weight: bold;
             font-size: 1.1rem;
@@ -98,7 +94,7 @@
             transition: opacity 0.3s ease-in-out;
             background: rgba(255, 255, 255, 1);
             width: 100%;
-            height: calc(100% - 44px); /* Adjust for header height */
+            height: calc(100% - 44px);
             opacity: 1;
         }
         
@@ -107,7 +103,6 @@
             opacity: 0;
         }
 
-        /* Old header elements are not used */
         .chat-overlay-header-mobile,
         .chat-overlay-header,
         .chat-overlay-header-img,
@@ -115,7 +110,6 @@
             display: none;
         }
         
-        /* The button to open the chat when it's closed */
         .open-chat-button {
             position: fixed;
             bottom: 24px;
@@ -139,7 +133,6 @@
             border-radius: 50%;
         }
 
-        /* Mobile styles */
         @media only screen and (max-width: 768px) {
             .chat-overlay {
                 width: 100%;
@@ -178,7 +171,7 @@
                 <button id="closeButton" class="chat-button close-button">x</button>
             </div>
         </div>
-        <iframe id="receiver" src="https://redfcu.dev.amelia.com/Amelia/ui/redstone_external/chat?domain=redfcu" frameborder="0" allow="geolocation; microphone; camera">
+        <iframe id="receiver" src="https://chat.redfcu.org/" frameborder="0" allow="geolocation; microphone; camera">
             <p>Your browser does not support iframes.</p>
         </iframe>
     </div>
@@ -195,16 +188,15 @@
             const closeButton = document.getElementById('closeButton');
             const receiver = document.getElementById('receiver');
 
-            // Function to open the chat overlay
             function openChat() {
-                chatOverlay.classList.add('chat-overlay-open');
+                chatOverlay.style.display = 'block'; // Ensure the overlay is visible
                 chatOverlay.classList.remove('chat-overlay-closed');
+                chatOverlay.classList.add('chat-overlay-open');
                 receiver.classList.remove('minimized');
                 openChatButton.style.display = 'none';
                 localStorage.setItem('chatState', 'open');
             }
 
-            // Function to minimize the chat overlay
             function minimizeChat() {
                 chatOverlay.classList.remove('chat-overlay-open');
                 chatOverlay.classList.add('chat-overlay-closed');
@@ -213,19 +205,16 @@
                 localStorage.setItem('chatState', 'minimized');
             }
             
-            // Function to close/hide the chat overlay completely
             function closeChat() {
                 chatOverlay.style.display = 'none';
                 openChatButton.style.display = 'block';
                 localStorage.setItem('chatState', 'closed');
             }
 
-            // Event listeners
             openChatButton.addEventListener('click', openChat);
             minimizeButton.addEventListener('click', minimizeChat);
             closeButton.addEventListener('click', closeChat);
 
-            // Initial state check from localStorage
             const savedState = localStorage.getItem('chatState');
             if (savedState === 'open') {
                 openChat();
