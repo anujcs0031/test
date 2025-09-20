@@ -189,6 +189,48 @@
             const closeButton = document.getElementById('closeButton');
             const receiver = document.getElementById('receiver');
 
+
+
+//Function To Send Attributes to Amelia From Parent Frame
+ function sendConversationAttribute(key, value) {
+	let data = {};
+	data["actionType"] = "ameliaConversationAttributes";
+	let entry = {};
+	entry[key] = value;
+	data["actionData"] = entry;
+	console.log("Send data: " + JSON.stringify(data));
+	sendMessage(data);
+    console.log("Data Sent: ");
+
+	}
+
+	var isAppStarted = false;
+	     window.addEventListener("message", (res) => {
+		console.log("Inside listner " + res);
+		if (
+		  res?.data?.notificationType === "conversationNew" ||
+		  res?.data?.notificationType === "conversationJoined"
+		) {
+		  console.log("Inside if ");
+		  isAppStarted = true;
+          sendConversationAttribute("Logged In User","True") // Attributes to Send to Amelia from HomePage. 
+		}
+	     });
+
+	 function sendMessage(jsonData) {
+            var ameliaBaseURL = "https://redfcu.dev.amelia.com/"  //define Amelia Base URL
+	        console.log("Inside send message new ");
+	        if (isAppStarted) {
+	          const iframe = document.getElementById("receiver");
+	          console.log("Inside if send message ");
+	          iframe?.contentWindow?.postMessage(
+	            jsonData,
+	            ameliaBaseURL 
+	          );
+	        }
+	      }
+
+
             function openChat() {
                 chatOverlay.style.display = 'block'; // Ensure the overlay is visible
                 chatOverlay.classList.remove('chat-overlay-closed');
