@@ -213,7 +213,12 @@
 		) {
 		  console.log("Inside if ");
 		  isAppStarted = true;
-          sendConversationAttribute("Logged In User","True") // Attributes to Send to Amelia from HomePage. 
+          // Attributes to Send to Amelia from HomePage. 
+          sendConversationAttribute("Logged In User","True") 
+          sendConversationAttribute("Member Number","78787879")  
+          sendConversationAttribute("Name","John Doe") 
+          sendConversationAttribute("DOB","09/09/1997") 
+          sendConversationAttribute("email","john.doe@redfcu.org") 
 		}
 	     });
 
