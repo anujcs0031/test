@@ -261,7 +261,7 @@
 
             openChatButton.addEventListener('click', openChat);
             minimizeButton.addEventListener('click', minimizeChat);
-            closeButton.addEventListener('click', closeChat);
+            closeButton.addEventListener('click', closeConversation);
 
             const savedState = localStorage.getItem('chatState');
             if (savedState === 'open') {
@@ -272,6 +272,25 @@
                 closeChat();
             }
         });
+
+function closeConversation() {
+            console.log("close conversation");
+            sendMessagetoInstance({actionType: 'endConversation'});
+        }
+        function resetConversation() {
+            sendMessagetoInstance({actionType: 'resetConversation'});
+        }
+function sendMessagetoInstance(data) {
+            /**
+             * Use data object and postMessage to URL provided (postMessage to child frame)
+             * @param {Object} data - data to be sent to url provided of child frame
+             * @returns - no return
+             */
+            var receiverElem = document.getElementById('receiver').contentWindow;
+            console.log("Send data: " + JSON.stringify(data));
+            receiverElem.postMessage(data, "https://redfcu.dev.amelia.com/Amelia/ui/redstone_external/chat?domain=redfcu");
+        }
+		
     </script>
 </body>
 </html>
