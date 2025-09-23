@@ -168,6 +168,7 @@
             </div>
             <div class="chat-header-right">
                 <button id="minimizeButton" class="chat-button minimize-button">-</button>
+				<button id="restartButton" class="chat-button restart-button">↻</button>
                 <button id="closeButton" class="chat-button close-button">x</button>
             </div>
         </div>
@@ -186,8 +187,10 @@
             const chatOverlay = document.getElementById('chatOverlay');
             const openChatButton = document.getElementById('openChatButton');
             const minimizeButton = document.getElementById('minimizeButton');
+			const restartButton = document.getElementById('restartButton');
             const closeButton = document.getElementById('closeButton');
             const receiver = document.getElementById('receiver');
+			
 
 
 
@@ -261,6 +264,7 @@
 
             openChatButton.addEventListener('click', openChat);
             minimizeButton.addEventListener('click', minimizeChat);
+		    restartButton.addEventListener('click', resetConversation);
             closeButton.addEventListener('click', closeConversation);
 
             const savedState = localStorage.getItem('chatState');
